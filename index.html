@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPath AI - Smart Education</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <div class="logo-box">SP</div>
+
+        <div>
+            <h2>SkillPath AI</h2>
+            <span>Smart Education</span>
+        </div>
+    </div>
+
+    <nav>
+        <button class="nav-btn active" onclick="showSection('welcome')">Welcome</button>
+        <button class="nav-btn" onclick="showSection('profile')">Learner Profile</button>
+        <button class="nav-btn" onclick="showSection('topics')">Topics</button>
+        <button class="nav-btn" onclick="showSection('starter')">Concept Starter</button>
+        <button class="nav-btn" onclick="showSection('assessment')">Assessment</button>
+        <button class="nav-btn" onclick="showSection('gap')">Gap Analysis</button>
+        <button class="nav-btn" onclick="showSection('review')">Mistake Review</button>
+        <button class="nav-btn" onclick="showSection('learning')">Targeted Learning</button>
+        <button class="nav-btn" onclick="showSection('reassessment')">Re-assessment</button>
+        <button class="nav-btn" onclick="showSection('progress')">Progress</button>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <strong>SIH 2026</strong>
+        <span>SIH26101</span>
+    </div>
+
+</aside>
+
+
+<main class="main-content">
+
+    <!-- WELCOME -->
+
+    <section id="welcome" class="section active">
+
+        <div class="hero">
+
+            <span class="badge">SMART EDUCATION</span>
+
+            <h1>
+                Learn according to your
+                <br>
+                <span>competency level.</span>
+            </h1>
+
+            <p>
+                SkillPath AI identifies competency gaps, provides targeted
+                learning, reassesses improvement and recommends the next
+                learning path.
+            </p>
+
+            <button class="primary-btn" onclick="showSection('profile')">
+                Start Learning
+            </button>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <h3>Assess</h3>
+                <p>
+                    Measure the learner's current competency level.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Identify Gap</h3>
+                <p>
+                    Find weak topics and explain the competency gap.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Targeted Learning</h3>
+                <p>
+                    Provide learning based on identified weaknesses.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Re-assess</h3>
+                <p>
+                    Use different questions to measure improvement.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section id="profile" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 01</span>
+
+            <h1>Learner Profile</h1>
+
+            <p>
+                Create a learner profile to personalize the learning journey.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <label>Name</label>
+
+            <input
+                id="learnerName"
+                type="text"
+                placeholder="Enter learner name"
+            >
+
+
+            <label>Role</label>
+
+            <select id="learnerRole">
+
+                <option value="Learner">
+                    Learner
+                </option>
+
+                <option value="Trainer">
+                    Trainer / Supervisor
+                </option>
+
+                <option value="Admin">
+                    Administrator
+                </option>
+
+            </select>
+
+
+            <label>Choose Subject</label>
+
+            <div class="subject-grid">
+
+                <button class="subject-btn"
+                    onclick="selectSubject('Python', this)">
+                    Python
+                </button>
+
+                <button class="subject-btn"
+                    onclick="selectSubject('Java', this)">
+                    Java
+                </button>
+
+                <button class="subject-btn"
+                    onclick="selectSubject('Data Structures', this)">
+                    Data Structures
+                </button>
+
+                <button class="subject-btn"
+                    onclick="selectSubject('DBMS', this)">
+                    DBMS
+                </button>
+
+            </div>
+
+
+            <button class="primary-btn" onclick="saveProfile()">
+                Continue
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOPICS -->
+
+    <section id="topics" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 02</span>
+
+            <h1>Competency Map</h1>
+
+            <p>
+                Topics are mapped to competencies and required proficiency levels.
+            </p>
+
+        </div>
+
+        <div id="topicContainer" class="topic-grid"></div>
+
+        <button class="primary-btn" onclick="showSection('starter')">
+            Continue to Concept Starter
+        </button>
+
+    </section>
+
+
+    <!-- CONCEPT STARTER -->
+
+    <section id="starter" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 03</span>
+
+            <h1>Concept Starter</h1>
+
+            <p>
+                Build a basic understanding before assessment.
+            </p>
+
+        </div>
+
+
+        <div class="learning-card">
+
+            <div id="starterContent"></div>
+
+            <button class="primary-btn" onclick="startAssessment()">
+                Start Assessment
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ASSESSMENT -->
+
+    <section id="assessment" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 04</span>
+
+            <h1>Competency Assessment</h1>
+
+            <p>
+                Answer the questions to identify your current competency level.
+            </p>
+
+        </div>
+
+
+        <div class="assessment-header">
+
+            <span id="questionNumber">
+                Question 1 of 5
+            </span>
+
+            <span id="assessmentScore">
+                Score: 0
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="question-topic" id="questionTopic"></div>
+
+            <h2 id="questionText"></h2>
+
+            <div id="answerContainer"></div>
+
+
+            <div class="question-actions">
+
+                <button class="secondary-btn" onclick="skipQuestion()">
+                    Skip
+                </button>
+
+                <button class="primary-btn" onclick="nextQuestion()">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GAP -->
+
+    <section id="gap" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 05</span>
+
+            <h1>Competency Gap Analysis</h1>
+
+            <p>
+                Understand where the learner needs improvement and why.
+            </p>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <span>Overall Score</span>
+                <strong id="overallScore">0%</strong>
+            </div>
+
+            <div class="kpi-card">
+                <span>Required Level</span>
+                <strong>80%</strong>
+            </div>
+
+            <div class="kpi-card">
+                <span>Overall Gap</span>
+                <strong id="gapScore">0%</strong>
+            </div>
+
+            <div class="kpi-card">
+                <span>Priority</span>
+                <strong id="priorityScore">-</strong>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Explainable Gap Analysis</h2>
+
+            <p id="gapExplanation"></p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Topic-wise Competency</h2>
+
+            <p class="small-note">
+                Demo indicator based on assessment performance for each mapped topic.
+            </p>
+
+            <div id="topicPerformance"></div>
+
+        </div>
+
+
+        <button class="primary-btn" onclick="showSection('review')">
+            Review Mistakes
+        </button>
+
+    </section>
+
+
+    <!-- REVIEW -->
+
+    <section id="review" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 06</span>
+
+            <h1>Mistake Review</h1>
+
+            <p>
+                Review correct and incorrect answers before targeted learning.
+            </p>
+
+        </div>
+
+
+        <div id="mistakeContainer"></div>
+
+
+        <button class="primary-btn" onclick="startTargetedLearning()">
+            Start Targeted Learning
+        </button>
+
+    </section>
+
+
+    <!-- TARGETED LEARNING -->
+
+    <section id="learning" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 07</span>
+
+            <h1>Targeted Learning</h1>
+
+            <p>
+                Learning content is selected according to the identified competency gap.
+            </p>
+
+        </div>
+
+
+        <div class="learning-card">
+
+            <div class="learning-tag" id="learningPriority">
+                HIGH PRIORITY
+            </div>
+
+
+            <h2 id="learningTopic"></h2>
+
+
+            <p id="learningReason"></p>
+
+
+            <div class="timer-box">
+
+                <span>
+                    Learning Timer
+                </span>
+
+                <strong id="timer">
+                    01:00
+                </strong>
+
+            </div>
+
+
+            <div id="learningContent"></div>
+
+
+            <button class="primary-btn" onclick="startReassessment()">
+                Take Re-assessment
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- REASSESSMENT -->
+
+    <section id="reassessment" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 08</span>
+
+            <h1>Re-assessment</h1>
+
+            <p>
+                Different questions test the same mapped competencies after targeted learning.
+            </p>
+
+        </div>
+
+
+        <div class="assessment-header">
+
+            <span id="rQuestionNumber">
+                Question 1 of 5
+            </span>
+
+            <span id="rScore">
+                Score: 0
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="question-topic" id="rQuestionTopic"></div>
+
+            <h2 id="rQuestionText"></h2>
+
+            <div id="rAnswerContainer"></div>
+
+
+            <div class="question-actions">
+
+                <button class="secondary-btn" onclick="skipRQuestion()">
+                    Skip
+                </button>
+
+                <button class="primary-btn" onclick="nextRQuestion()">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section id="progress" class="section">
+
+        <div class="section-heading">
+
+            <span class="badge">STEP 09</span>
+
+            <h1>Progress & Next Step</h1>
+
+            <p>
+                Track improvement and receive the next recommended learning path.
+            </p>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <span>Before Learning</span>
+                <strong id="beforeScore">0%</strong>
+            </div>
+
+            <div class="kpi-card">
+                <span>After Learning</span>
+                <strong id="afterScore">0%</strong>
+            </div>
+
+            <div class="kpi-card">
+                <span>Improvement</span>
+                <strong id="improvementScore">0%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Adaptive Recommendation</h2>
+
+            <p id="nextRecommendation"></p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>iGOT Karmayogi Integration</h2>
+
+            <div class="integration-box">
+
+                <span>
+                    INTEGRATION STATUS
+                </span>
+
+                <strong>
+                    Mock / Demo Integration
+                </strong>
+
+            </div>
+
+
+            <p>
+                SkillPath AI is designed to connect with the iGOT Karmayogi
+                ecosystem for training recommendations. The current prototype
+                demonstrates the integration flow using simulated recommendation data.
+            </p>
+
+
+            <button class="secondary-btn" onclick="showIGOTRecommendation()">
+                View iGOT Recommendation
+            </button>
+
+            <div id="igotRecommendation" class="demo-result"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Learning Material Pipeline</h2>
+
+            <div class="pipeline-preview">
+
+                <span>Content Extraction</span>
+                <span>→</span>
+                <span>Topic Detection</span>
+                <span>→</span>
+                <span>Competency Mapping</span>
+                <span>→</span>
+                <span>MCQ Generation</span>
+                <span>→</span>
+                <span>Difficulty Tagging</span>
+
+            </div>
+
+
+            <div class="upload-status">
+
+                <strong>Proposed AI Pipeline</strong>
+
+                <br><br>
+
+                Learning material can be processed through the
+                Content → Topic → Competency → MCQ pipeline.
+
+                <br><br>
+
+                <strong>
+                    Current Demo:
+                </strong>
+
+                The prototype uses predefined demo content and questions.
+                No external AI API is called.
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Adaptive Decision Logic</h2>
+
+            <div class="logic-grid">
+
+                <div class="logic-item">
+                    <strong>Below 50%</strong>
+                    <span>High Priority</span>
+                </div>
+
+                <div class="logic-item">
+                    <strong>50% – 79%</strong>
+                    <span>Medium Priority</span>
+                </div>
+
+                <div class="logic-item">
+                    <strong>80% or above</strong>
+                    <span>On Track</span>
+                </div>
+
+            </div>
+
+            <p class="small-note">
+                The current prototype demonstrates rule-based adaptive decision logic.
+                A production version can replace this layer with trained AI/ML models
+                and authorised learning-platform APIs.
+            </p>
+
+        </div>
+
+
+        <div class="restart-area">
+
+            <button id="restartBtn" class="restart-btn" onclick="restartDemo()">
+                Restart Demo
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
